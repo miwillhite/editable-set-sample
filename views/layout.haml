@@ -1,0 +1,57 @@
+!!!
+%html{ :xmlns => "http://www.w3.org/1999/xhtml" }
+  %head
+    %title
+      EditableSet v0.8
+      
+    %link{ :type => 'text/css', :href => '/stylesheets/styles.css', :rel => 'stylesheet' }
+
+  %body
+    %h1 
+      EditableSet v0.8
+      %small
+        requires jQuery 1.4.1 or newer
+    
+    %h4 Update an entire set of data at once with this jQuery edit-in-place plugin.
+
+    %ul#navigation
+      %li
+        %a{ :href => '#' } Download (Minified)
+      %li
+        %a{ :href => '#' } Documentation/Wiki
+      %li
+        %a{ :href => 'http://www.github.com/miwillhite/editable-set' } View Source (on Github)
+      %li
+        %a{ :href => '#' } Run Specs
+        
+    %h2 Overview
+
+    %p <strong>EditableSet was designed for Ruby on Rails apps, but it will work with any web application.*</strong> When activated, it wraps the target object&rsquo;s inner html with a form, converts all named spans to inputs, then appends &ldquo;Submit&rdquo; and &ldquo;Cancel&rdquo; buttons. Pressing the &ldquo;Save&rdquo; button will submit the form via ajax <small>(PUT)</small>. Originally based on and inspired by Mika Tuupola&rsquo;s <a href="http://www.appelsiini.net/projects/jeditable">Jeditable</a>.
+        
+    %p.note
+      * The default repopulation script will only work if the &ldquo;name&rdquo; attributes follow Rails&rsquo; conventions. This feature can be overridden.
+      
+    = yield
+    
+    #footer
+      Copyright (c) 2010 Matthew Willhite, released under the MIT license.
+      Page design inspired by Pivotal Labs&rsquo; Jasmine.
+    
+    %script{ :type => 'text/javascript', :src => 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js' }
+    %script{ :type => "text/javascript", :src => "/javascripts/jquery.editable-set.js", :charset => "utf-8" }
+    
+    :javascript
+      $('.editable').editableSet({
+        action: '/robot/1/application/1',
+        beforeLoad: function() {          
+          $('.saved_indicator').remove();
+        },
+        onSave: function() {
+          $('<em />', { text: 'Updating...' }).addClass('saving_indicator').insertAfter($('.form_cancel'));
+        },
+        afterSave: function() {
+          $('.saving_indicator, .saved_indicator').remove(); // Need to remove .saved_indicator again because it was captured in the reset
+          $('<em />', { text: 'Update Successful!' }).addClass('saved_indicator').appendTo($('.editable'));
+        }
+        
+      });

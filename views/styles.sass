@@ -1,0 +1,104 @@
+@mixin inlineblock
+  :display -moz-inline-stack
+  :display inline-block
+  *display: inline
+  :zoom 1
+  
+$success    : #0D8B00
+$subdued    : #AAA
+$highlight  : #CCFFCC
+
+body
+  :font-family "Lucida Grande", "Lucida Sans", Lucida, Arial, sans-serif
+  :color #333
+  :padding 40px
+
+ul
+  :padding 0
+  :margin-bottom 30px
+
+h1, h2, h3, h4, h5
+  :margin 0 0 8px 0
+
+h1
+  :text
+    :shadow 1px 1px 2px #BBB
+    :indent -2px
+  small
+    :font
+      :size 14px
+      :weight normal
+    :text-shadow none
+
+h2
+  small
+    :font-weight normal
+    
+h5
+  :color $success
+
+input[type='text'], textarea
+  :width 300px
+  
+span
+  :font-weight normal
+
+p
+  :font-size 14px
+  :line-height 20px
+
+.highlight
+  :padding 8px 12px
+  :border 1px solid $subdued
+  :background $highlight
+  :margin-top 30px
+  
+.note
+  :font-size 67%
+
+#navigation
+  li
+    @include inlineblock
+    :margin-right 10px
+
+.editable
+  :border 1px dashed $subdued
+  :background #F7F7F7
+  :padding 12px
+  :margin-top 12px
+  
+  h3
+    small
+      :color $subdued
+      :font-weight normal
+  li
+    :margin-bottom 12px
+    :list-style none
+    :font-size 14px
+
+    label
+      :display block
+      :font-weight bold
+
+.indicator
+  @include inlineblock
+  :margin-left 8px
+  :font
+    :size 67%
+    :style normal
+  
+.saving_indicator
+  @extend .indicator
+  :color $success
+    
+.saved_indicator
+  @extend .indicator
+  :margin-left 0px
+  :font
+    :weight bold
+    :size 120%
+  :color $success
+  
+#footer
+  @extend .note
+  :margin-top 24px
