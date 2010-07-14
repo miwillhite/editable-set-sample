@@ -10,4 +10,5 @@ Todos
 
 * Add specs to this sample app
 * Finish hooking up the navigation
+* Test the sample page on other browsers
 
