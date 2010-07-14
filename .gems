@@ -1,1 +1,2 @@
 haml --version '~> 3.0.13'
+sinatra --version '~> 1.0'
