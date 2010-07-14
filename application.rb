@@ -2,6 +2,8 @@
 	require gem
 end
 
+VERSION = 0.6
+
 # Styles
 get '/stylesheets/styles.css' do
   headers 'Content-Type' => 'text/css; :charset=utf-8'
@@ -11,6 +13,7 @@ end
 
 # GET requests
 get "/" do
+  @version_number = VERSION.to_s
   haml :index
 end
 
