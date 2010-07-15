@@ -17,6 +17,10 @@ get "/" do
   haml :index
 end
 
+get "/specs" do
+  haml :suite, :layout => false
+end
+
 # PUT requests
 put '/robot/1/application/1' do
   sleep 1

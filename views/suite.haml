@@ -1,0 +1,83 @@
+!!!
+%html{:lang => "en", "xml:lang" => "en", :xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-type"}/
+    %title EditableSet Test Page
+    / Load jquery and other vendor files
+    %script{:src => "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"}
+    %script{:src => "/javascripts/vendor/scupper.js"}
+    %title Jasmine Test Runner
+    %link{:href => "/javascripts/vendor/jasmine-0.11.1/jasmine.css", :rel => "stylesheet", :type => "text/css"}/
+    %script{:src => "/javascripts/vendor/jasmine-0.11.1/jasmine.js", :type => "text/javascript"}
+    %script{:src => "/javascripts/vendor/jasmine-0.11.1/jasmine-html.js", :type => "text/javascript"}
+    / include source files here...
+    %script{:src => "/javascripts/jquery.editable-set.min.js"}
+    / include spec files here...
+    %script{:src => "http://github.com/miwillhite/editable-set/raw/master/spec/spec_helper.js", :type => "text/javascript"}
+    %script{:src => "http://github.com/miwillhite/editable-set/raw/master/spec/jquery.editable-set.spec.js", :type => "text/javascript"}
+  %body
+    %p
+      %a{ :href => 'http://editable-set.heroku.com' } Return to EditableSet Homepage
+  
+    #test
+    / ===========
+    / = Snippet =
+    / ===========
+    #snippets
+      #editable_snippet
+        .editable
+          %h3 Editable Field Set Title
+          %ul
+            %li
+              / textfield with no association
+              %span{:name => "customer[street1]"} 123 Fake St.
+            %li
+              / textfield with simple asssociation
+              %span{:name => "customer[address_attributes][street1]"} 123 Fake St.
+            %li
+              / textfield with deeply nested asssociation
+              %span{:name => "customer[employer_attributes][address_attributes][street1]"} 123 Fake St.
+            %li
+              / textfield with deeply nested asssociation, has many relationship
+              %span{:name => "customer[employers_attributes][0][address_attributes][street1]"} 123 Fake St.
+            %li
+              / textfield with deeply nested asssociation, two has many relationships
+              %span{:name => "customer[more_employers_attributes][0][addresses_attributes][1][street1]"} 123 Fake St.
+            %li
+              / textfield with extremely deeply nested asssociation, three has many relationships
+              %span{:name => "customer[spouses_attributes][0][employers_attributes][1][addresses_attributes][2][street1]"} 123 Fake St.
+            %li
+              / textfield with extremely deeply nested asssociation, three has one relationships
+              %span{:name => "customer[spouse_attributes][employer_attributes][address_attributes][street1]"} 123 Fake St.
+            %li
+              / hidden field
+              %span{:name => "customer[id]", :style => "display: none;", :type => "hidden"} 1
+            %li
+              / textarea
+              %span{:name => "customer[notes]", :type => "textarea"} Has a lot of money.
+            %li
+              / select menu, single-dimensional array
+              %span{:name => "customer[gender]", :options => "[\"Male\", \"Female\", \"Unknown\"]", :type => "select"} Unknown
+            %li
+              / select menu, multi-dimensional array
+              %span{:name => "customer[personality]", :options => "[[\"Calm\", \"calm\"], [\"Excitable\", \"excitable\"], [\"Outrageous\", \"outrageous\"]]", :type => "select"} Calm
+            %li
+              / select menu, with custom prompt
+              %span{:name => "customer[level_of_interest]", :options => "[\"Not at all\", \"Somewhat\", \"Extremely\"]", :prompt => "How are interested are you?", :type => "select"} Not at all
+            %li
+              / radio, single-dimensional array
+              %span{:name => "customer[eye_color]", :options => "[\"Blue\", \"Brown\", \"Hazel\"]", :type => "radio"} Brown
+            %li
+              / radio, multi-dimensional array
+              %span{:name => "customer[hair_color]", :options => "[[\"Brown\", \"brown\"], [\"Blonde\", \"blonde\"], [\"Red\", \"red\"]]", :type => "radio"} Brown
+            %li
+              / checkbox
+              %span{:name => "customer[is_alive]", :type => "checkbox"} true
+              %span{:name => "customer[is_dead]", :type => "checkbox"} false
+            %li
+              / non-existant input type
+              %span{:name => "customer[is_confused]", :type => "fail"} true
+    :javascript
+      jasmine.getEnv().addReporter(new jasmine.TrivialReporter());
+      jasmine.getEnv().execute();
+    
