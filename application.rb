@@ -2,7 +2,7 @@
 	require gem
 end
 
-VERSION = 0.6
+VERSION = 0.6.1
 
 # Styles
 get '/stylesheets/styles.css' do
