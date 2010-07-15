@@ -2,7 +2,7 @@
 	require gem
 end
 
-VERSION = 0.6.1
+VERSION = "0.6.1"
 
 # Styles
 get '/stylesheets/styles.css' do
@@ -13,7 +13,7 @@ end
 
 # GET requests
 get "/" do
-  @version_number = VERSION.to_s
+  @version_number = VERSION
   haml :index
 end
 
