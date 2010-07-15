@@ -5,10 +5,3 @@ EditableSet is a jQuery edit-in-place plugin for editing entire sets of data at 
 
 This app uses the Sinatra web framework.
 
-Todos
------
-
-* Add specs to this sample app
-* Finish hooking up the navigation
-* Test the sample page on other browsers
-
