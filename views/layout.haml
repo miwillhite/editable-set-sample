@@ -27,10 +27,10 @@
         
     %h2 Overview
 
-    %p <strong>EditableSet was designed for Ruby on Rails apps, but it will work with any web application.*</strong> When activated, it wraps the target object&rsquo;s inner html with a form, converts all named spans to inputs, then appends &ldquo;Submit&rdquo; and &ldquo;Cancel&rdquo; buttons. Pressing the &ldquo;Save&rdquo; button will submit the form via ajax <small>(PUT)</small>. Originally based on and inspired by Mika Tuupola&rsquo;s <a href="http://www.appelsiini.net/projects/jeditable">Jeditable</a>.
+    %p <strong>EditableSet was designed for Ruby on Rails apps, but it will work with any web application.*</strong> When activated, it wraps the target object&rsquo;s inner html with a form, converts all spans with the attribute &ldquo;data-name&rdquo; to inputs, then appends &ldquo;Submit&rdquo; and &ldquo;Cancel&rdquo; buttons. Pressing the &ldquo;Save&rdquo; button will submit the form via ajax <small>(PUT)</small>. Originally based on and inspired by Mika Tuupola&rsquo;s <a href="http://www.appelsiini.net/projects/jeditable">Jeditable</a>.
         
     %p.note
-      * The default repopulation script will only work if the &ldquo;name&rdquo; attributes follow Rails&rsquo; conventions. This feature can be overridden.
+      * The default repopulation script will only work if the &ldquo;data-name&rdquo; attributes follow Rails&rsquo; &ldquo;name&rdquo; attribute conventions. This feature can be overridden.
       
     = yield
     
