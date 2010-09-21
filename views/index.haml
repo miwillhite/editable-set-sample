@@ -7,26 +7,26 @@
   %ul  
     %li
       %label Desired Robot Name:
-      %span{ :name => 'robot[application_attributes][name]' } ToastBot
+      %span{ "data-name" => 'robot[application_attributes][name]' } ToastBot
   
     %li
       %label 
         Are you Robo Certified and Approved?
         %br
-        %span{ :name => 'robot[application_attributes][certified]', :type => :checkbox, :checked_value => 'Yes', :unchecked_value => 'No' } Yes
+        %span{ "data-name" => 'robot[application_attributes][certified]', "data-type" => :checkbox, "data-checked_value" => 'Yes', "data-unchecked_value" => 'No' } Yes
 
     %li
       %label Describe your assets and primary functions:
-      %span{ :name => 'robot[application_attributes][description]', :type => :textarea } I have the ability to scale vertical walls at a very fast pace. Also, I am absurdly good at toasting bread.
+      %span{ "data-name" => 'robot[application_attributes][description]', "data-type" => :textarea } I have the ability to scale vertical walls at a very fast pace. Also, I am absurdly good at toasting bread.
 
     %li  
       %label What is your Operational Status?
-      %span{ :name => 'robot[application_attributes][status]', :type => :select, :options => '["Need Repair", "Functional", "Prime Condition"]' } Functional
+      %span{ "data-name" => 'robot[application_attributes][status]', "data-type" => :select, "data-options" => '["Need Repair", "Functional", "Prime Condition"]' } Functional
     
     %li
       %label What your primary source of energy?
-      %span{ :name => 'robot[application_attributes][energy_source]', :type => :select, :options => '["Gasoline", "Dilithium Crystal", "Energy Drinks"]' } Dilithium Crystal
+      %span{ "data-name" => 'robot[application_attributes][energy_source]', "data-type" => :select, "data-options" => '["Gasoline", "Dilithium Crystal", "Energy Drinks"]' } Dilithium Crystal
 
     %li
       %label What are your intentions towards mankind?
-      %span{ :name => 'robot[application_attributes][intentions]', :type => :radio, :options => '["Evil", "Neutral", "Good"]' } Neutral
+      %span{ "data-name" => 'robot[application_attributes][intentions]', "data-type" => :radio, "data-options" => '["Evil", "Neutral", "Good"]' } Neutral
