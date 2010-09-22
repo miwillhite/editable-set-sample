@@ -1,7 +1,7 @@
-!!!
-%html{:lang => "en", "xml:lang" => "en", :xmlns => "http://www.w3.org/1999/xhtml"}
+!!! 5
+%html
   %head
-    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-type"}/
+    %meta{:charset => "utf-8"}/
     %title EditableSet Test Page
     / Load jquery and other vendor files
     %script{:src => "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"}
@@ -17,7 +17,7 @@
     %script{:src => "http://github.com/miwillhite/editable-set/raw/master/spec/jquery.editable-set.spec.js", :type => "text/javascript"}
   %body
     %p
-      %a{ :href => 'http://editable-set.heroku.com' } Return to EditableSet Homepage
+      %a{ :href => '/' } Return to EditableSet Homepage
   
     #test
     / ===========
@@ -30,53 +30,72 @@
           %ul
             %li
               / textfield with no association
-              %span{:name => "customer[street1]"} 123 Fake St.
+              %span{"data-name" => "customer[street1]"} 123 Fake St.
+            %li
+              / email field
+              %span{"data-name" => "customer[email]", "data-type" => "email"} john.doe@google.com
+            %li
+              / url field
+              %span{"data-name" => "customer[url]", "data-type" => "url"} http://editable-set.heroku.com
+            %li
+              / number field
+              %span{"data-max" => "120", "data-min" => "0", "data-name" => "customer[age]", "data-step" => "1", "data-type" => "number"} 25
+            %li
+              / range field
+              %span{"data-max" => "10", "data-min" => "0", "data-name" => "customer[rage]", "data-step" => "10", "data-type" => "range"} 10
             %li
               / textfield with simple asssociation
-              %span{:name => "customer[address_attributes][street1]"} 123 Fake St.
+              %span{"data-name" => "customer[address_attributes][street1]"} 123 Fake St.
             %li
               / textfield with deeply nested asssociation
-              %span{:name => "customer[employer_attributes][address_attributes][street1]"} 123 Fake St.
+              %span{"data-name" => "customer[employer_attributes][address_attributes][street1]"} 123 Fake St.
             %li
               / textfield with deeply nested asssociation, has many relationship
-              %span{:name => "customer[employers_attributes][0][address_attributes][street1]"} 123 Fake St.
+              %span{"data-name" => "customer[employers_attributes][0][address_attributes][street1]"} 123 Fake St.
             %li
               / textfield with deeply nested asssociation, two has many relationships
-              %span{:name => "customer[more_employers_attributes][0][addresses_attributes][1][street1]"} 123 Fake St.
+              %span{"data-name" => "customer[more_employers_attributes][0][addresses_attributes][1][street1]"} 123 Fake St.
             %li
               / textfield with extremely deeply nested asssociation, three has many relationships
-              %span{:name => "customer[spouses_attributes][0][employers_attributes][1][addresses_attributes][2][street1]"} 123 Fake St.
+              %span{"data-name" => "customer[spouses_attributes][0][employers_attributes][1][addresses_attributes][2][street1]"} 123 Fake St.
             %li
               / textfield with extremely deeply nested asssociation, three has one relationships
-              %span{:name => "customer[spouse_attributes][employer_attributes][address_attributes][street1]"} 123 Fake St.
+              %span{"data-name" => "customer[spouse_attributes][employer_attributes][address_attributes][street1]"} 123 Fake St.
             %li
               / hidden field
-              %span{:name => "customer[id]", :style => "display: none;", :type => "hidden"} 1
+              %span{"data-name" => "customer[id]", "data-style" => "display: none;", "data-type" => "hidden"} 1
             %li
               / textarea
-              %span{:name => "customer[notes]", :type => "textarea"} Has a lot of money.
+              %span{"data-name" => "customer[notes]", "data-type" => "textarea"} Has a lot of money.
             %li
               / select menu, single-dimensional array
-              %span{:name => "customer[gender]", :options => "[\"Male\", \"Female\", \"Unknown\"]", :type => "select"} Unknown
+              %span{"data-name" => "customer[gender]", "data-options" => "[\"Male\", \"Female\", \"Unknown\"]", "data-type" => "select"} Unknown
             %li
               / select menu, multi-dimensional array
-              %span{:name => "customer[personality]", :options => "[[\"Calm\", \"calm\"], [\"Excitable\", \"excitable\"], [\"Outrageous\", \"outrageous\"]]", :type => "select"} Calm
+              %span{"data-name" => "customer[personality]", "data-options" => "[[\"Calm\", \"calm\"], [\"Excitable\", \"excitable\"], [\"Outrageous\", \"outrageous\"]]", "data-type" => "select"} Calm
             %li
               / select menu, with custom prompt
-              %span{:name => "customer[level_of_interest]", :options => "[\"Not at all\", \"Somewhat\", \"Extremely\"]", :prompt => "How are interested are you?", :type => "select"} Not at all
+              %span{"data-name" => "customer[level_of_interest]", "data-options" => "[\"Not at all\", \"Somewhat\", \"Extremely\"]", "data-prompt" => "How are interested are you?", "data-type" => "select"} Not at all
             %li
               / radio, single-dimensional array
-              %span{:name => "customer[eye_color]", :options => "[\"Blue\", \"Brown\", \"Hazel\"]", :type => "radio"} Brown
+              %span{"data-name" => "customer[eye_color]", "data-options" => "[\"Blue\", \"Brown\", \"Hazel\"]", "data-type" => "radio"} Brown
             %li
               / radio, multi-dimensional array
-              %span{:name => "customer[hair_color]", :options => "[[\"Brown\", \"brown\"], [\"Blonde\", \"blonde\"], [\"Red\", \"red\"]]", :type => "radio"} Brown
+              %span{"data-name" => "customer[hair_color]", "data-options" => "[[\"Brown\", \"brown\"], [\"Blonde\", \"blonde\"], [\"Red\", \"red\"]]", "data-type" => "radio"} Brown
             %li
               / checkbox
-              %span{:name => "customer[is_alive]", :type => "checkbox"} true
-              %span{:name => "customer[is_dead]", :type => "checkbox"} false
+              %span{"data-name" => "customer[is_alive]", "data-type" => "checkbox"} true
+              %span{"data-name" => "customer[is_dead]", "data-type" => "checkbox"} false
+            %li
+              / checkbox with custom values
+              %span{"data-checked_value" => "yes", "data-name" => "customer[likes_cheese]", "data-type" => "checkbox", "data-unchecked_value" => "no"} yes
             %li
               / non-existant input type
-              %span{:name => "customer[is_confused]", :type => "fail"} true
+              %span{"data-name" => "customer[is_confused]", "data-type" => "fail"} true
+            %li
+              / input with *class* attribute
+              %span{ :id => "customer_is_classy", :class => "special", "data-name" => "customer[is_classy]", :foo => "bar"} of course
+              
     :javascript
       jasmine.getEnv().addReporter(new jasmine.TrivialReporter());
       jasmine.getEnv().execute();
